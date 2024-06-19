@@ -85,7 +85,7 @@ const Sidebar = () => {
           <MdOutlineAddTask className='text-white text-2xl font-black' />
         </p>
         <span className='text-2xl font-bold text-black dark:text-white'>
-          TaskMe
+          TaskBloom
         </span>
       </h1>
 
