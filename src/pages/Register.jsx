@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Button, Loading, Textbox } from "../components";
-import { useLoginMutation } from "../redux/slices/api/authApiSlice";
+import { useRegisterMutation } from "../redux/slices/api/authApiSlice";
 import { setCredentials } from "../redux/slices/authSlice";
 import { useEffect } from "react";
 
-const Login = () => {
+const Register = () => {
   const { user } = useSelector((state) => state.auth);
   const {
     register,
@@ -17,14 +17,13 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [login, { isLoading }] = useLoginMutation();
+  const [signup, { isLoading }] = useRegisterMutation();
 
-  const handleLogin = async (data) => {
+  const handleRegister = async (data) => {
     try {
-      const res = await login(data).unwrap();
+      await signup(data).unwrap();
 
-      dispatch(setCredentials(res));
-      navigate("/");
+      navigate("/log-in");
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -54,18 +53,44 @@ const Login = () => {
 
         <div className='w-full md:w-1/3 p-4 md:p-1 flex flex-col justify-center items-center'>
           <form
-            onSubmit={handleSubmit(handleLogin)}
+            onSubmit={handleSubmit(handleRegister)}
             className='form-container w-full md:w-[400px] flex flex-col gap-y-8 bg-white dark:bg-slate-900 px-10 pt-14 pb-14'
           >
-            <div>
-              <p className='text-blue-600 text-3xl font-bold text-center'>
-                Welcome back!
-              </p>
-              <p className='text-center text-base text-gray-700 dark:text-gray-500'>
-                Keep all your credetials safe!
-              </p>
-            </div>
             <div className='flex flex-col gap-y-5'>
+              <Textbox
+                placeholder='Full name'
+                type='text'
+                name='name'
+                label='Full Name'
+                className='w-full rounded'
+                register={register("name", {
+                  required: "Full name is required!",
+                })}
+                error={errors.name ? errors.name.message : ""}
+              />
+              <Textbox
+                placeholder='Title'
+                type='text'
+                name='title'
+                label='Title'
+                className='w-full rounded'
+                register={register("title", {
+                  required: "Title is required!",
+                })}
+                error={errors.title ? errors.title.message : ""}
+              />
+
+              <Textbox
+                placeholder='Role'
+                type='text'
+                name='role'
+                label='Role'
+                className='w-full rounded'
+                register={register("role", {
+                  required: "User role is required!",
+                })}
+                error={errors.role ? errors.role.message : ""}
+              />
               <Textbox
                 placeholder='you@example.com'
                 type='email'
@@ -94,11 +119,11 @@ const Login = () => {
             ) : (
               <Button
                 type='submit'
-                label='Log in'
+                label='Register'
                 className='w-full h-10 bg-blue-700 text-white rounded-full'
               />
             )}
-            <p>New? <a style={{textDecoration: "underline"}} href="/register">Register</a></p>
+            <p>Got an account? <a style={{textDecoration: "underline"}} href="/log-in">Log in</a></p>
           </form>
         </div>
       </div>
@@ -106,4 +131,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

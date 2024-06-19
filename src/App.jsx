@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster } from "sonner";
 import { Navbar, Sidebar } from "./components";
-import { Dashboard, Login, TaskDetail, Tasks, Trash, Users } from "./pages";
+import { Dashboard, Login, Register, TaskDetail, Tasks, Trash, Users } from "./pages";
 import { setOpenSidebar } from "./redux/slices/authSlice";
 
 function Layout() {
@@ -102,6 +102,7 @@ const App = () => {
           </Route>
 
           <Route path='/log-in' element={<Login />} />
+          <Route path='/register' element={<Register />} />
         </Routes>
       </div>
 

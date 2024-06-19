@@ -6,8 +6,10 @@ export const authApiSlice = apiSlice.injectEndpoints({
     login: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}/login`,
+        // url: `${USERS_URL}/register`,
         method: "POST",
         body: data,
+        // body: {...data, name: "Tobiju", role: "admin", title: "Software Engineer", is_superuser: true},
         credentials: "include",
       }),
     }),
@@ -15,7 +17,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
       query: (data) => ({
         url: `${USERS_URL}/register`,
         method: "POST",
-        body: data,
+        body: {...data, is_superuser: true},
         credentials: "include",
       }),
     }),
