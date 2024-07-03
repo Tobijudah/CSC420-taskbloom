@@ -74,7 +74,7 @@ export const postApiSlice = apiSlice.injectEndpoints({
 
     deleteRestoreTast: builder.mutation({
       query: ({ id, actionType }) => ({
-        url: `${TASKS_URL}/delete-restore/${id}?actionType=${actionType}`,
+        url: `${TASKS_URL}/delete-restore${id ? `/${id}` : ''}?actionType=${actionType}`,
         method: "DELETE",
         credentials: "include",
       }),
