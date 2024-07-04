@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
-import { useRegisterMutation } from "../redux/slices/api/authApiSlice";
+import { useAddUserMutation } from "../redux/slices/api/authApiSlice";
 import { useUpdateUserMutation } from "../redux/slices/api/userApiSlice";
 import { setCredentials } from "../redux/slices/authSlice";
 import { Button, Loading, ModalWrapper, Textbox } from "./";
@@ -20,7 +20,7 @@ const AddUser = ({ open, setOpen, userData }) => {
 
   const dispatch = useDispatch();
 
-  const [addNewUser, { isLoading }] = useRegisterMutation();
+  const [addNewUser, { isLoading }] = useAddUserMutation();
   const [updateUser, { isLoading: isUpdating }] = useUpdateUserMutation();
 
   const handleOnSubmit = async (data) => {
