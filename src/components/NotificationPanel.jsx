@@ -74,7 +74,7 @@ export default function NotificationPanel() {
         >
           <Popover.Panel className='absolute -right-16 md:-right-2 z-10 mt-5 flex w-screen max-w-max  px-4'>
             {({ close }) =>
-              data?.length > 0 && (
+              data?.length > 0 ? (
                 <div className='w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white dark:bg-[#1f1f1f] text-sm leading-6 shadow-lg ring-1 ring-gray-900/5'>
                   <div className='p-4'>
                     {data?.slice(0, 5).map((item, index) => (
@@ -116,6 +116,14 @@ export default function NotificationPanel() {
                         {item.name}
                       </Link>
                     ))}
+                  </div>
+                </div>
+              ) : (
+                <div className='w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white dark:bg-[#1f1f1f] text-sm leading-6 shadow-lg ring-1 ring-gray-900/5'>
+                  <div className='p-4'>
+                    <div className='flex items-center justify-center gap-4'>
+                      <p className='text-gray-500'>No new notifications</p>
+                    </div>
                   </div>
                 </div>
               )
