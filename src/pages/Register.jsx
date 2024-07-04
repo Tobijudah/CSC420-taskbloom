@@ -62,7 +62,7 @@ const Register = () => {
                 type='text'
                 name='name'
                 label='Full Name'
-                className='w-full rounded'
+                className='w-full rounded-full'
                 register={register("name", {
                   required: "Full name is required!",
                 })}
@@ -73,7 +73,7 @@ const Register = () => {
                 type='text'
                 name='title'
                 label='Title'
-                className='w-full rounded'
+                className='w-full rounded-full'
                 register={register("title", {
                   required: "Title is required!",
                 })}
@@ -85,7 +85,7 @@ const Register = () => {
                 type='text'
                 name='role'
                 label='Role'
-                className='w-full rounded'
+                className='w-full rounded-full'
                 register={register("role", {
                   required: "User role is required!",
                 })}
